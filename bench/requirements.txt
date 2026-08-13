@@ -1,0 +1,4 @@
+matplotlib
+fpdf2
+python-dotenv
+psutil

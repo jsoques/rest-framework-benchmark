@@ -1,0 +1,24 @@
+# Environment variables and secrets
+.env
+
+# Python virtual environments
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+.mypy_cache/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# Go build output
+go-fiber/go-fiber
+
+# Rust build output
+rust-axum/target/
+
+# Benchmark results
+bench/results/
+bench/report.pdf

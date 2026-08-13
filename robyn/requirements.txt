@@ -1,0 +1,4 @@
+robyn
+asyncpg
+pydantic
+python-dotenv

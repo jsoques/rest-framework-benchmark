@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Exec(openspec list)",
+      "Exec(true)",
+      "Exec(python3)",
+      "Exec(openspec new)",
+      "Exec(openspec status)",
+      "Exec(openspec instructions)",
+      "Exec(nc)",
+      "Exec(PGPASSWORD=docker psql)",
+      "Exec(ls)",
+      "Exec(uv venv)",
+      "Exec(set)",
+      "Exec(sleep)",
+      "Exec(ss)",
+      "Exec(kill)",
+      "Exec(curl)",
+      "Exec(wait)",
+      "Exec(pkill)",
+      "Exec(head)",
+      "Exec(seq)",
+      "Exec(break)",
+      "Exec(tail)",
+      "Exec(cat)",
+      "Exec(uv pip)",
+      "Exec(go mod)",
+      "Exec(go build)",
+      "Exec(.venv/bin/python)",
+      "Exec(grep)",
+      "Exec(git init)",
+      "Exec(mkdir)",
+      "Exec(python3.12)",
+      "Exec(cargo)"
+    ]
+  }
+}
