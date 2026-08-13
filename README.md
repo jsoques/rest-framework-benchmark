@@ -10,6 +10,23 @@ This project compares five REST stacks on the same database-bound endpoint:
 
 Each service exposes one endpoint, `GET /spatial_ref_sys`, that returns the first 100 rows of the PostgreSQL `spatial_ref_sys` table as a JSON array. The `bench/` harness starts each service, runs `wrk` with the same concurrency settings, and produces a `report.pdf`.
 
+## What this benchmark measures
+
+The goal is to compare how each framework handles the same real-world, database-bound HTTP workload:
+
+- **HTTP/JSON stack**: request parsing, routing, JSON serialization, and response generation.
+- **Database integration**: an async/cached connection pool, a parameterized `SELECT`, and row-to-JSON conversion.
+- **Concurrency scaling**: throughput and latency are recorded at multiple `wrk` connection counts (default `200`, but configurable).
+
+Each run is preceded by a **warm-up pass** so Postgres caches and connection pools are hot. The harness can also record **CPU and memory** usage while `wrk` runs.
+
+Two endpoint modes are tested:
+
+1. **`/spatial_ref_sys` (DB mode)** — queries `SELECT srid, auth_name, auth_srid, srtext, proj4text FROM spatial_ref_sys LIMIT 100` through the framework's database pool. This measures the full request lifecycle including DB I/O and serialization.
+2. **`/spatial_ref_sys?static=1` (static mode)** — returns the same 100 rows from an in-memory cache loaded at startup. This removes Postgres from the path and isolates raw HTTP/JSON speed.
+
+You can also stress JSON serialization by requesting `/spatial_ref_sys?limit=<n>` (clamped 1–1000) in DB mode to see how each framework scales the payload size.
+
 ## Requirements
 
 - Python 3.12
