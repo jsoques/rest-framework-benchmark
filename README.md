@@ -1,10 +1,11 @@
 # REST API Performance Benchmark
 
-This project compares five REST stacks on the same database-bound endpoint:
+This project compares six REST stacks on the same database-bound endpoint:
 
 - **[FastAPI](https://fastapi.tiangolo.com) + [Uvicorn](https://www.uvicorn.org)** (`fastapi-uvicorn/`)
 - **[FastAPI](https://fastapi.tiangolo.com) + [Granian](https://github.com/emmett-framework/granian)** (`fastapi-granian/`)
 - **[Robyn](https://github.com/sansyrox/robyn)** (`robyn/`)
+- **Robyn + multi-process/worker scaling** (`robyn-process-workers/`)
 - **[Go Fiber](https://gofiber.io) + [`database/sql`](https://pkg.go.dev/database/sql) + [`lib/pq`](https://github.com/lib/pq)** (`go-fiber/`)
 - **Rust + [Axum](https://github.com/tokio-rs/axum) + [`deadpool-postgres`](https://github.com/bikeshedder/deadpool)** (`rust-axum/`)
 
@@ -53,6 +54,9 @@ FASTAPI_GRANIAN_PORT=8002
 ROBYN_PORT=8003
 GO_FIBER_PORT=8004
 RUST_AXUM_PORT=8005
+ROBYN_PROCESS_WORKERS_PORT=8006
+ROBYN_PROCESSES=2
+ROBYN_WORKERS=4
 ```
 
 `.env` is gitignored by default.
@@ -75,6 +79,12 @@ uv pip install -r requirements.txt --python .venv/bin/python
 cd ..
 
 cd robyn
+uv venv --python 3.12 .venv
+uv pip install -r requirements.txt --python .venv/bin/python
+cd ..
+
+# Robyn multi-process/workers variant
+cd robyn-process-workers
 uv venv --python 3.12 .venv
 uv pip install -r requirements.txt --python .venv/bin/python
 cd ..
@@ -190,6 +200,10 @@ cd fastapi-granian
 
 # Robyn
 cd robyn
+.venv/bin/python app.py
+
+# Robyn multi-process/workers variant
+cd robyn-process-workers
 .venv/bin/python app.py
 
 # Go Fiber

@@ -22,6 +22,7 @@ SERVICE_PORTS = {
     "fastapi-uvicorn": os.environ["FASTAPI_UVICORN_PORT"],
     "fastapi-granian": os.environ["FASTAPI_GRANIAN_PORT"],
     "robyn": os.environ["ROBYN_PORT"],
+    "robyn-process-workers": os.environ["ROBYN_PROCESS_WORKERS_PORT"],
     "go-fiber": os.environ["GO_FIBER_PORT"],
     "rust-axum": os.environ["RUST_AXUM_PORT"],
 }
@@ -53,6 +54,10 @@ SERVICES = {
     },
     "robyn": {
         "cwd": ROOT / "robyn",
+        "cmd": [".venv/bin/python", "app.py"],
+    },
+    "robyn-process-workers": {
+        "cwd": ROOT / "robyn-process-workers",
         "cmd": [".venv/bin/python", "app.py"],
     },
     "go-fiber": {

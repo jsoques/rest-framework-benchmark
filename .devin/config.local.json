@@ -31,7 +31,20 @@
       "Exec(git init)",
       "Exec(mkdir)",
       "Exec(python3.12)",
-      "Exec(cargo)"
+      "Exec(cargo)",
+      "Exec(openspec store)",
+      "Exec(cd)",
+      "Exec(wc)",
+      "Exec(git status)",
+      "Exec(git log)",
+      "Exec(git add)",
+      "Exec(git commit)",
+      "Exec(openspec archive)",
+      "Exec(git diff)",
+      "Exec(openspec context)",
+      "Exec(pgrep)",
+      "Exec(rm)",
+      "Exec(xargs)"
     ]
   }
 }
